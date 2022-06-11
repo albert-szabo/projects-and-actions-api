@@ -146,8 +146,24 @@ We have provided test data for all the resources.
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
-1. The core features of Node.js and Express and why they are useful.
-1. Understand and explain the use of Middleware.
-1. The basic principles of the REST architectural style.
-1. Understand and explain the use of Express Routers.
-1. Describe tooling used to manually test the correctness of an API.
+1. What are the core features of Node.js and Express? Why are they useful?
+
+The core features of Node.js are its use of JavaScript, its use of JSON for data exchange, the fact that it is single-threaded, the fact that it is asynchronous, and access it allows to NPM libraries.
+The core features of Express are middleware, routing (inclunding for application modularity), convenience helpers, and views.
+These core features are helpful because they make it easier to write powerful, functional, and modular server-side code.
+
+2. What is the use of middleware?
+
+Middleware allows for operation on and mutation of the request and response objects in modular ways. It can also trigger an action, especially in functionality such as logging or security.
+
+3. What are the basic principles of the REST architectural style?
+
+They are that everything is a resource, that each resource is accessible via a unique URL, that resources can have many representations, that communication happens over a stateless protocol (HTTP), and that resource management occurs via HTTP methods.
+
+4. What is the use of Express Routers?
+
+Express routers allow for modular siloing within an Express application as a way to organize it, usually for a group of endpoints with similar URLs and resources. They can have their own routing and middleware.
+
+5. What tooling is used to manually test the correctness of an API? How is it used?
+
+Multiple types of tooling are used to manually test an API. Some, like HTTPie, are used directly within the text editor. Other options, such as Postman and Insomnia, are standalone applications with different versions to provide native functionality across multiple operating systems. They are used to test APIs by sending requests using various HTTP methods and, in some cases, modifying the request headers and / or the response body to test specific functionality by examining the response. 

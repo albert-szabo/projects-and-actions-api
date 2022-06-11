@@ -12,4 +12,16 @@ async function validateActionID(request, response, next) {
     }
 }
 
-module.exports = { validateActionID };
+function validateAction(request, response, next) {
+    const { project_id, description, notes } = request.body;
+    if (!project_id || !description || !description.trim() || !notes || !notes.trim()) {
+        next({ status: 400, message: 'Please provide both a project ID, a description, and some notes.' });
+    } else {
+        request.projectID = project_id;
+        request.description = description.trim();
+        request.notes = notes.trim();
+        next();
+    }
+}
+
+module.exports = { validateActionID, validateAction };

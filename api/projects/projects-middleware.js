@@ -23,4 +23,16 @@ function validateProject(request, response, next) {
     }
 }
 
-module.exports = { validateProjectID, validateProject };
+function validateProjectWithCompletion(request, response, next) {
+    const { name, description, completed } = request.body;
+    if (!name || !name.trim() || !description || !description.trim() || completed === null || completed === undefined) {
+        next({ status: 400, message: 'Please provide a name, a description, and a completion status.' });
+    } else {
+        request.name = name.trim();
+        request.description = description.trim();
+        request.completed = completed;
+        next();
+    }
+}
+
+module.exports = { validateProjectID, validateProject, validateProjectWithCompletion };

@@ -14,6 +14,10 @@ server.use('/', (request, response) => {
     response.send('<h1>Test</h1>');
 });
 
+server.use('*', (request, response) => {
+    response.status(404).json({ message: `That ${request.method} request could not be completed because the URL ${request.baseUrl} was not found.` });
+});
+
 server.use((error, request, response, next) => {
     response.status(error.status || 500).json({ message: error.message || 'An internal server error occurred.' });
 });

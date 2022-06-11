@@ -4,6 +4,8 @@ const express = require('express');
 
 const Projects = require('./projects-model');
 
+const { validateProjectID } = require('./projects-middleware');
+
 const router = express.Router();
 
 router.get('/', (request, response, next) => {
@@ -12,6 +14,10 @@ router.get('/', (request, response, next) => {
             response.json(projects);
         })
         .catch(next);
+});
+
+router.get('/:id', validateProjectID, (request, response) => {
+    response.json(request.project);
 });
 
 module.exports = router;

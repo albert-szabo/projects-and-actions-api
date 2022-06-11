@@ -10,12 +10,12 @@ server.use(express.json());
 
 
 
-server.use('/', (request, response) => {
+server.get('/', (request, response) => {
     response.send('<h1>Test</h1>');
 });
 
 server.use('*', (request, response) => {
-    response.status(404).json({ message: `That ${request.method} request could not be completed because the URL ${request.baseUrl} was not found.` });
+    response.status(404).json({ message: `That ${request.method} request could not be completed because the path ${request.baseUrl} was not found.` });
 });
 
 server.use((error, request, response, next) => {

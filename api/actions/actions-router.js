@@ -4,7 +4,7 @@ const express = require('express');
 
 const Actions = require('./actions-model');
 
-const { validateActionID, validateAction } = require('./actions-middlware');
+const { validateActionID, validateAction, validateActionWithCompletion } = require('./actions-middlware');
 
 const router = express.Router();
 
@@ -25,6 +25,15 @@ router.post('/', validateAction, (request, response, next) => {
     Actions.insert(actionToAdd)
         .then(newAction => {
             response.status(201).json(newAction);
+        })
+        .catch(next);
+});
+
+router.put('/:id', validateActionID, validateActionWithCompletion, (request, response, next) => {
+    const actionToUpdate = { project_id: request.projectID, description: request.description, notes: request.notes, completed: request.completed };
+    Actions.update(request.params.id, actionToUpdate)
+        .then(updatedAction => {
+            response.json(updatedAction);
         })
         .catch(next);
 });

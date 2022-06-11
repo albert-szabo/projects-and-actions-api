@@ -38,6 +38,12 @@ router.put('/:id', validateActionID, validateActionWithCompletion, (request, res
         .catch(next);
 });
 
-
+router.delete('/:id', validateActionID, (request, response, next) => {
+    Actions.remove(request.params.id)
+        .then(() => {
+            response.status(200).json();
+        })
+        .catch(next);
+});
 
 module.exports = router;

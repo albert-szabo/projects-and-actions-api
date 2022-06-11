@@ -38,4 +38,12 @@ router.put('/:id', validateProjectID, validateProjectWithCompletion, (request, r
         .catch(next);
 });
 
+router.delete('/:id', validateProjectID, (request, response, next) => {
+    Projects.remove(request.params.id)
+        .then(() => {
+            response.status(200).json();
+        })
+        .catch(next);
+});
+
 module.exports = router;
